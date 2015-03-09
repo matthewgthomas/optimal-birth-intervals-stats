@@ -26,6 +26,7 @@ mort.plots[[1]] <- ggplot(siler.melt, aes(age, value, group=factor(Population)))
   scale_x_continuous("Age (years)", limits=c(0, 90)) +
   coord_cartesian(xlim = c(0, 90), ylim = c(0, 1)) +
   scale_y_continuous("Mortality hazard", limits=c(0,1)) +
+  scale_colour_manual(values=cbPalette) +
   
   theme_bw() +
   #eliminates baground, gridlines, and chart border
@@ -44,7 +45,7 @@ mort.plots[[1]] <- ggplot(siler.melt, aes(age, value, group=factor(Population)))
   theme(plot.title = element_text(hjust = -0.05, face="bold")) +
   
   # hide legend
-  theme(legend.position="none") +
+  #theme(legend.position="none") +
   
   #draws x and y axis line
   theme(axis.line = element_line(color = 'black'))
@@ -62,6 +63,7 @@ mort.plots[[2]] <- ggplot(matmort.blanc, aes(x=age, y=value, group=level)) +
   scale_x_continuous("Age (years)", limits=c(15, max.age)) +
   coord_cartesian(xlim = c(15, max.age), ylim = c(0, 0.1)) +
   scale_y_continuous("Mortality hazard", limits=c(0, 0.1)) +
+  scale_colour_manual(values=cbPalette) +
   
   theme_bw() +
   #eliminates baground, gridlines, and chart border
@@ -80,7 +82,7 @@ mort.plots[[2]] <- ggplot(matmort.blanc, aes(x=age, y=value, group=level)) +
   theme(plot.title = element_text(hjust = -0.05, face="bold")) +
   
   # hide legend
-  theme(legend.position="none") +
+  #theme(legend.position="none") +
   
   #draws x and y axis line
   theme(axis.line = element_line(color = 'black'))
@@ -104,6 +106,7 @@ sib.plots[[1]] <- ggplot(sibcomps.melt, aes(age, value, group=SiblingCompetition
   
   scale_x_continuous("Child's age (years)") +
   scale_y_continuous("Weight on siblings' mortality") +
+  scale_colour_manual(values=cbPalette) +
   
   theme_bw() +
   theme(
@@ -132,6 +135,7 @@ sib.plots[[2]] <- ggplot(sibhelps.melt, aes(age, value, group=SiblingHelp)) +
   
   scale_x_continuous("Child's age (years)") +
   scale_y_continuous("Weight on siblings' mortality") +
+  scale_colour_manual(values=cbPalette) +
 
   theme_bw() +
   theme(
@@ -184,6 +188,7 @@ ggplot(IB.avg, aes(age, mean, group=factor(Population))) +
   scale_x_continuous("Age (years)", limits=c(0, max.age), breaks=seq(0, max.age, by=10)) +
   coord_cartesian(xlim = c(0, max.age), ylim = c(0, max.ibi)) +
   scale_y_continuous("Interbirth interval (years)", limits=c(0, max.ibi)) +
+  scale_colour_manual(values=cbPalette) +
   
   theme_bw() +
   theme(
@@ -240,6 +245,8 @@ for (pop in pops)
     scale_x_continuous("Age (years)", limits=c(0, max.age)) +
     coord_cartesian(xlim = c(0, max.age), ylim = c(0, max.ibi)) +
     scale_y_continuous("Interbirth interval (years)", limits=c(0, max.ibi)) +
+    scale_colour_manual(values=cbPalette) +
+    
     labs(title=pop) +
     # look and feel
     theme_bw() +
@@ -361,12 +368,6 @@ AFBs <- ddply(IB.subset,
 ########################################################################
 ## Figure 5 : sibling help for one particular population
 ########################################################################
-fig5 <- plot.fig5("Sweden")
-pdf( paste(graph.path, "fig5.pdf", sep="/"), height=2, width=7)
-plot(fig5)
-dev.off()
-
-
 plot.fig5 <- function(population, plot.title="") {
   require(grid)
   
@@ -402,6 +403,7 @@ plot.fig5 <- function(population, plot.title="") {
       scale_x_continuous("Age (years)", limits=c(0, max.age), breaks=seq(0, max.age, by=10)) +
       coord_cartesian(xlim = c(0, max.age), ylim = c(0, max.ibi)) +
       scale_y_continuous("Interbirth interval (years)", limits=c(0, max.ibi)) +
+      scale_colour_manual(values=cbPalette) +
       
       facet_grid(. ~ SiblingHelp, labeller=label_both) +
       
@@ -428,3 +430,8 @@ plot.fig5 <- function(population, plot.title="") {
   
   return(fig5)
 }
+
+fig5 <- plot.fig5("Sweden")
+pdf( paste(graph.path, "fig5.pdf", sep="/"), height=2, width=7)
+plot(fig5)
+dev.off()

@@ -17,7 +17,7 @@ graph.path <- file.path(data.path, "graphs")
 source("init.r")
 source("import-ibi-data.r")
 
-plots[[1]] <- plot.fig5("Sweden", "A")
+plots[[1]] <- plot.fig5("Sweden", "(a)")
 
 
 ###########################
@@ -32,7 +32,7 @@ graph.path <- file.path(data.path, "graphs")
 source("init.r")
 source("import-ibi-data.r")
 
-plots[[2]] <- plot.fig5("Sweden", "B")
+plots[[2]] <- plot.fig5("Sweden", "(b)")
 
 
 ################################################
@@ -47,7 +47,7 @@ graph.path <- file.path(data.path, "graphs")
 source("init.r")
 source("import-ibi-data.r")
 
-plots[[3]] <- plot.fig5("Sweden", "C")
+plots[[3]] <- plot.fig5("Sweden", "(c)")
 
 
 #################

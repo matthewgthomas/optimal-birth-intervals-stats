@@ -135,6 +135,7 @@ for (pop in pops)
     scale_x_continuous("Age (years)", limits=c(0, max.age), breaks=seq(0, max.age, by=10)) +
     coord_cartesian(xlim = c(0, max.age), ylim = c(0, max.ibi)) +
     scale_y_continuous("Interbirth interval (years)", limits=c(0, max.ibi)) +
+    scale_colour_manual(values=cbPalette) +
     
     facet_grid(. ~ SiblingHelp, labeller=label_both) +
     
@@ -161,6 +162,13 @@ for (pop in pops)
   i <- i + 1
 }
 
-pdf( paste(graph.path, "figS3.pdf", sep="/"), height=14, width=7)
+#pdf( paste(graph.path, "figS3.pdf", sep="/"), height=14, width=7)
+#png( paste(graph.path, "figS3.png", sep="/"), height=14, width=7 )
 multiplot(plotlist=plots, cols=1, layout=matrix(c(1,2,3,4,5), nrow=5, byrow=TRUE))
-dev.off()
+#dev.off()
+
+
+########################################################################
+## Figure S5
+########################################################################
+# plot this by creating a version of Fig. 3 using the probabilistic AFB data
